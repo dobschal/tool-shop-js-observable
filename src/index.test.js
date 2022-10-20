@@ -1,13 +1,19 @@
-import { Observable } from "./Observable.js";
-import { jest, it, expect, describe } from '@jest/globals';
+import { Observable } from "./index.js";
+import { it, expect, describe } from '@jest/globals';
 
 describe("Observable", () => {
     it("should call the subscriber if value changes", () => {
+        let i = 0;
         const observableData = Observable({
             text: "yeah"
         });
         observableData.$on("text", newText => {
-            expect(newText).toBe("uuuh");
+            if (i === 0) {
+                expect(newText).toBe("yeah");
+            } else {
+                expect(newText).toBe("uuuh");
+            }
+            i++
         });
         observableData.text = "uuuh";
     });
