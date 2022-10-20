@@ -1,10 +1,6 @@
-## JS UI Kit Widget
+## Tool Shop JS Observable
 
 
-
-## TODO
-- [ ] CSS and Style Handline
-- [ ] Reactive children and attributes
-- [ ] Observable $off method
-- [ ] Split code into several modules
-- [ ] Provide Readme instructions
+[![Tests](https://github.com/dobschal/tool-shop-js-observable/actions/workflows/unit-test.yml/badge.svg)](https://github.com/dobschal/tool-shop-js-observable/actions/workflows/unit-test.yml)
+[![NPM](https://img.shields.io/npm/v/tool-shop-js-observable)](https://www.npmjs.com/package/tool-shop-js-observable)
+[![Size](https://img.shields.io/bundlephobia/min/tool-shop-js-observable?style=plastic)](https://img.shields.io/bundlephobia/min/tool-shop-js-observable?style=plastic)
