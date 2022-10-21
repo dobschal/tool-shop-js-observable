@@ -13,7 +13,7 @@
 export function Observable(plainData) {
     const listener = [];
     if (Array.isArray(plainData)) {
-        return;
+        return ObservableArray(plainData);
     }
     return new Proxy({
         ...plainData,
@@ -30,4 +30,30 @@ export function Observable(plainData) {
             return true;
         }
     });
+}
+
+/**
+ * @param {Array<any>} array 
+ * @returns {Observable<Array>}
+ */
+export function ObservableArray(array) {
+    const listener = [];
+
+    array.$on = function (key, callback) {
+        listener.push({ key, callback });
+    };
+
+    const methods = ["filter", "find", "findIndex", "join", "map", "push", "some", "sort"];
+
+    for (const method of methods) {
+        array[method] = function (...args) {
+            const retVal = Array.prototype[method].apply(this, args);
+            listener.forEach(({ key, callback }) => {
+                if (key === method) callback(retVal);
+            });
+            return retVal;
+        };
+    }
+
+    return array;
 }
